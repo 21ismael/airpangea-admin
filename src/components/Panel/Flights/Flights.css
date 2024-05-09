@@ -161,6 +161,7 @@ th {
 .rdtTimeToggle {
     background-color: var(--color-red) !important;
     font-weight: 600 !important;
+    color: white;
 }
 
 .rdtTime table thead, .rdtTime table tbody tr {
@@ -170,13 +171,17 @@ th {
 .rdtMonths {
     color: black;
     font-weight: 600 !important;
-
 }
 
 .rdtSwitch, .rdtPrev, .rdtNext, .dow {
     background-color: black;
+    color: white;
 }
 
 .rdtSwitch:hover, .rdtPrev:hover, .rdtNext:hover {
     background-color: var(--color-red) !important;
+}
+
+.rdtCounters {
+    color: white; 
 }
