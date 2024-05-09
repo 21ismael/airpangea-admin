@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header/Header';
 import './Panel.css';
-//import loader from '../../assets/svg/loader.svg'
+import loader from '../../assets/svg/loader.svg'
 
 export default function Root() {
 
-    /*useEffect(() => {
+    useEffect(() => {
         const timeoutId = setTimeout(() => {
             const loaderElement = document.querySelector(".loader");
             if (loaderElement) {
@@ -16,13 +16,13 @@ export default function Root() {
     
         // Limpia el temporizador cuando el componente se desmonta
         return () => clearTimeout(timeoutId);
-    }, []);*/
+    }, []);
 
     return (
         <>
-            {/*<div className="loader">
+            <div className="loader">
                 <img src={loader} alt='loader' />
-            </div>*/}
+            </div>
 
             <Header />
             <main>

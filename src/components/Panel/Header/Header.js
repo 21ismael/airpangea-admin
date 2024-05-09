@@ -6,8 +6,8 @@ import './Header.css';
 
 export default function Header() {
     return <>
-        <header className="container-fluid text-white py-3">
-            <nav className="navbar navbar-expand-lg" data-bs-theme="dark">
+        <header className="">
+            <nav className="navbar navbar-expand-lg py-3" data-bs-theme="dark">
                 <div className="container-fluid">
                     <a className="navbar-brand m-0" href="/">
                         <img src={logo} className="logo" alt="logo" />

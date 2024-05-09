@@ -37,6 +37,12 @@ ul .nav-link:hover {
 
 header {
     background-color: black;
+    
+}
+
+header .navbar {
+    z-index: 3;
+    background-color: black;
 }
 
 header img {
