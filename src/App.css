@@ -1,0 +1,61 @@
+:root {
+    --color-red: #E40000; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== GLOBAL ===== */
+
+@font-face {
+    font-family: 'HelveticaNowRegular';
+    src: url('./assets/fonts/HelveticaNowTextRegular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'HelveticaNowBold';
+    src: url('./assets/fonts/HelveticaNowTextBold.woff2') format('woff2');
+}
+
+* {
+    font-family: 'HelveticaNowBold';
+}
+
+.container-fluid {
+    padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 0 12px;
+    }
+}
+
+/* ===== BUTTONS ===== */
+
+.btn-p {
+    width: 100%;
+    height: 38px;
+    border: none;
+    color: white;
+    background-color: var(--color-red);
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.btn-p:hover {
+    color: white;
+    background-color: black;
+}
+
+.form-control {
+    border: 1px solid #dee2e6;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border: 2px solid var(--color-red);
+}

@@ -1,0 +1,182 @@
+/* ===== AIRPORT ===== */
+
+.airport-container {
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+h2 {
+    background-color: black;
+    padding: 7px 16px;
+    font-size: 20px;
+    color: white;
+}
+
+.airport-container .row {
+    padding: 16px;
+}
+
+/* ===== FLIGHT ===== */
+
+.flight-container {
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.flight-container .flight-content {
+    padding: 16px;
+}
+
+.flight-container .flight-content button {
+    margin-bottom: 8px;
+}
+
+.flight-container label {
+    color: black;
+}
+
+.country {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    display: flex;
+    gap: 10px;
+    padding: 0 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+}
+
+.country select,
+.airport select {
+    border: none;
+    outline: none;
+}
+
+.country select {
+    width: 100%;
+    height: 36px;
+}
+
+.country img {
+    height: 32px;
+}
+
+.airport {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    display: flex;
+    gap: 3px;
+    padding: 0 10px 0 7px;
+    background-color: white;
+}
+
+.airport img {
+    width: 40px;
+    height: 32px;
+}
+
+.airport select {
+    height: 32px;
+    width: 100%;
+}
+
+/* ===== TABLA DE VUELOS ===== */
+
+.table-container {
+    border: 3px solid black;
+    border-radius: 10px;
+    overflow: auto;
+    color: black;
+    max-height: 70vh;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+th,
+td {
+    padding: 2px 8px;
+    white-space: nowrap;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
+
+/* ===== SCROLLBAR ===== */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: var(--color-red) transparent;
+}
+
+* .table-container {
+    scrollbar-width: auto;
+    scrollbar-color: black transparent;
+}
+
+/* ===== DATETIME ===== */
+
+.rdt {
+    z-index: 1; 
+}
+
+.arrival-date-info {
+    z-index: 0; 
+}
+
+.custom-datetime input {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    display: flex;
+    background-color: white;
+    height: 34px;
+    width: 100%;
+}
+
+.rdtDay {
+    color: black; 
+}
+
+.rdtToday::before {
+    border-bottom: 7px solid var(--color-red) !important;
+}
+
+.rdtActive, .rdtActive:hover {
+    background-color: var(--color-red) !important;
+}
+
+.rdtTimeToggle {
+    background-color: var(--color-red) !important;
+    font-weight: 600 !important;
+}
+
+.rdtTime table thead, .rdtTime table tbody tr {
+    background-color: var(--color-red) !important;
+}
+
+.rdtMonths {
+    color: black;
+    font-weight: 600 !important;
+
+}
+
+.rdtSwitch, .rdtPrev, .rdtNext, .dow {
+    background-color: black;
+}
+
+.rdtSwitch:hover, .rdtPrev:hover, .rdtNext:hover {
+    background-color: var(--color-red) !important;
+}
