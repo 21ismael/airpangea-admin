@@ -7,7 +7,7 @@ import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import formattedDate from '../../../utils/formattedDate';
 
-export default function AddFlight({fetchFlights}) {
+export default function AddFlight({ fetchFlights }) {
 
     const flightsService = new FlightsService();
 
@@ -44,17 +44,27 @@ export default function AddFlight({fetchFlights}) {
 
     const handleDateTimeChange = (newDateTime, type) => {
         if (type === 'departure') {
+
             setDepartureDateTime(newDateTime);
+            const newDepartureDateTime = new Date(newDateTime);
+            newDepartureDateTime.setHours(newDepartureDateTime.getHours() + 2);
+
             setFlight(prevFlight => ({
                 ...prevFlight,
-                departureDateTime: newDateTime.toISOString()
+                departureDateTime: newDepartureDateTime.toISOString()
             }));
+
         } else if (type === 'arrival') {
+
             setArrivalDateTime(newDateTime);
+            const newArrivalDateTime = new Date(newDateTime);
+            newArrivalDateTime.setHours(newArrivalDateTime.getHours() + 2);
+
             setFlight(prevFlight => ({
                 ...prevFlight,
-                arrivalDateTime: newDateTime.toISOString()
+                arrivalDateTime: newArrivalDateTime.toISOString()
             }));
+
         }
     }
 
@@ -79,7 +89,7 @@ export default function AddFlight({fetchFlights}) {
                 }));
             } else if (type === 'arrival' && airports.length > 1) {
                 // Set the arrival airport to the second airport in the list
-                setArrivalAirport(airports[1]); 
+                setArrivalAirport(airports[1]);
                 setFlight(prevFlight => ({
                     ...prevFlight,
                     airportArrivalId: airports[1].id // Use the ID of the second airport
@@ -165,6 +175,7 @@ export default function AddFlight({fetchFlights}) {
                                     timeFormat="HH:mm A"
                                     onChange={(newDateTime) => handleDateTimeChange(newDateTime, 'departure')}
                                     className="custom-datetime"
+                                    inputProps={{ readOnly: true }}
                                 />
                             </div>
                             <div className="arrival-date col-12 col-sm-6 col-md-12 col-lg-6">
@@ -175,6 +186,7 @@ export default function AddFlight({fetchFlights}) {
                                     timeFormat="HH:mm A"
                                     onChange={(newDateTime) => handleDateTimeChange(newDateTime, 'arrival')}
                                     className="custom-datetime"
+                                    inputProps={{ readOnly: true }}
                                 />
                             </div>
                         </div>
@@ -255,7 +267,7 @@ export default function AddFlight({fetchFlights}) {
                                     step={0.1}
                                     min={0}
                                     className="form-control mb-2"
-                                    placeholder="39,99€"
+                                    placeholder="39.9€"
                                     value={flight.price}
                                     onChange={(event) => {
                                         const newValue = event.target.value;

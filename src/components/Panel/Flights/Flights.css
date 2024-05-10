@@ -16,6 +16,13 @@ h2 {
     padding: 16px;
 }
 
+.error-message {
+    margin-top: 10px;
+    color: var(--color-red);
+    line-height: 1;
+    font-size: 13px;
+}
+
 /* ===== FLIGHT ===== */
 
 .flight-container {
