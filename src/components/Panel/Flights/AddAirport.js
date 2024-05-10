@@ -10,7 +10,7 @@ export default function AddAirport() {
         iata: "",
         name: "",
         city: "",
-        country: ""
+        country: "Spain"
     };
 
     const [airport, setAirport] = useState(initialAirportState);
@@ -44,7 +44,7 @@ export default function AddAirport() {
         const { name, value } = event.target;
 
         if (name === 'name') {
-            if (value.length == 0) {
+            if (value.length === 0) {
                 setErrorMessage("*The airport name cant be empty.");
                 setError(true);
             } else {
@@ -54,7 +54,7 @@ export default function AddAirport() {
         }
 
         if (name === 'city') {
-            if (value.length == 0) {
+            if (value.length === 0) {
                 setErrorMessage("*The city name cant be empty.");
                 setError(true);
             } else {
@@ -68,7 +68,7 @@ export default function AddAirport() {
                 setErrorMessage("*The IATA code has to be a string and have a length of 3 characters.");
                 setError(true);
 
-                if (value.length == 0) {
+                if (value.length === 0) {
                     setErrorMessage("");
                 }
 
