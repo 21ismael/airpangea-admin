@@ -44,30 +44,37 @@ export default function AddFlight({ fetchFlights }) {
 
     const handleDateTimeChange = (newDateTime, type) => {
         if (type === 'departure') {
-
             setDepartureDateTime(newDateTime);
             const newDepartureDateTime = new Date(newDateTime);
             newDepartureDateTime.setHours(newDepartureDateTime.getHours() + 2);
-
+    
             setFlight(prevFlight => ({
                 ...prevFlight,
                 departureDateTime: newDepartureDateTime.toISOString()
             }));
-
+    
+            // If arrival datetime is before departure datetime, adjust it to departure datetime + 1 day
+            if (arrivalDateTime < newDepartureDateTime) {
+                const newMinArrivalDateTime = new Date(newDepartureDateTime);
+                newMinArrivalDateTime.setDate(newMinArrivalDateTime.getDate() + 1);
+                setArrivalDateTime(newMinArrivalDateTime);
+                setFlight(prevFlight => ({
+                    ...prevFlight,
+                    arrivalDateTime: newMinArrivalDateTime.toISOString()
+                }));
+            }
         } else if (type === 'arrival') {
-
             setArrivalDateTime(newDateTime);
             const newArrivalDateTime = new Date(newDateTime);
             newArrivalDateTime.setHours(newArrivalDateTime.getHours() + 2);
-
+    
             setFlight(prevFlight => ({
                 ...prevFlight,
                 arrivalDateTime: newArrivalDateTime.toISOString()
             }));
-
         }
-    }
-
+    };
+    
     useEffect(() => {
         const selectedCountry = countries.find(country => country.nameEN === 'Spain');
         if (selectedCountry) {
@@ -151,7 +158,7 @@ export default function AddFlight({ fetchFlights }) {
         event.preventDefault();
         try {
             await flightsService.addFlight(flight);
-            fetchFlights(); 
+            fetchFlights();
             alert(JSON.stringify(flight));
         } catch (error) {
             console.error('Error adding flight:', error);
@@ -176,6 +183,12 @@ export default function AddFlight({ fetchFlights }) {
                                     onChange={(newDateTime) => handleDateTimeChange(newDateTime, 'departure')}
                                     className="custom-datetime"
                                     inputProps={{ readOnly: true }}
+                                    isValidDate={(currentDate) => {
+                                        // currentDate: Fecha actual que se está evaluando
+                                        const now = new Date(); // Obtiene la fecha y hora actual
+                                        // Devuelve true si la fecha actual es posterior o igual a la fecha actual
+                                        return currentDate.isAfter(now, 'day') || currentDate.isSame(now, 'day');
+                                    }}
                                 />
                             </div>
                             <div className="arrival-date col-12 col-sm-6 col-md-12 col-lg-6">
@@ -187,6 +200,14 @@ export default function AddFlight({ fetchFlights }) {
                                     onChange={(newDateTime) => handleDateTimeChange(newDateTime, 'arrival')}
                                     className="custom-datetime"
                                     inputProps={{ readOnly: true }}
+                                    isValidDate={(currentDate) => {
+                                        // currentDate: Fecha actual que se está evaluando
+                                        const now = new Date(); // Obtiene la fecha y hora actual
+                                        const departureDate = new Date(departureDateTime); // Obtiene la fecha de salida
+
+                                        // Devuelve true si la fecha actual es posterior o igual a la fecha de salida
+                                        return currentDate.isSameOrAfter(departureDate, 'day') || currentDate.isSameOrAfter(now, 'day');
+                                    }}
                                 />
                             </div>
                         </div>

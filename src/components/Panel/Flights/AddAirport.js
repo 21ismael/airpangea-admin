@@ -16,15 +16,15 @@ export default function AddAirport() {
     const [airport, setAirport] = useState(initialAirportState);
     const [country, setCountry] = useState("Spain");
 
-    const [error, setError] = useState(false);
+    const [error, setError] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Verificar si hay un error
-        if (error) {
-            setErrorMessage("*Error al agregar el aeropuerto. Por favor, rellene los campos.");
+        // Check if there's an error in the city and airport name fields
+        if (airport.city.trim() === "" || airport.name.trim() === "" || airport.iata.trim() == "" || airport.iata.length !== 3) {
+            setErrorMessage("*Error adding airport. Please fill in all fields.");
             return;
         }
 
@@ -36,7 +36,7 @@ export default function AddAirport() {
             setErrorMessage("");
         } catch (error) {
             console.error('Error:', error);
-            setErrorMessage("Error al agregar el aeropuerto. Por favor, inténtelo de nuevo.");
+            setErrorMessage("*Error adding airport. Please try again.");
         }
     };
 
@@ -45,7 +45,7 @@ export default function AddAirport() {
 
         if (name === 'name') {
             if (value.length === 0) {
-                setErrorMessage("*The airport name cant be empty.");
+                setErrorMessage("*The airport name can't be empty.");
                 setError(true);
             } else {
                 setError(false);
@@ -55,7 +55,7 @@ export default function AddAirport() {
 
         if (name === 'city') {
             if (value.length === 0) {
-                setErrorMessage("*The city name cant be empty.");
+                setErrorMessage("*The city name can't be empty.");
                 setError(true);
             } else {
                 setError(false);
@@ -64,24 +64,30 @@ export default function AddAirport() {
         }
 
         if (name === 'iata') {
-            if (!/^[a-zA-Z]+$/.test(value) || value.length !== 3) {
-                setErrorMessage("*The IATA code has to be a string and have a length of 3 characters.");
+            const upperCaseIata = value.toUpperCase();
+            if (!/^[A-Z]+$/.test(upperCaseIata) || upperCaseIata.length !== 3) {
+                setErrorMessage("*The IATA code must be a 3-character alphabetical string.");
                 setError(true);
 
-                if (value.length === 0) {
-                    setErrorMessage("");
+                if(value.length == 0) {
+                    setError(true);
+                    setErrorMessage(""); 
                 }
-
             } else {
                 setError(false);
                 setErrorMessage("");
             }
-        }
 
-        setAirport(prevAirportForm => ({
-            ...prevAirportForm,
-            [name]: value
-        }));
+            setAirport(prevAirportForm => ({
+                ...prevAirportForm,
+                iata: upperCaseIata
+            }));
+        } else {
+            setAirport(prevAirportForm => ({
+                ...prevAirportForm,
+                [name]: value
+            }));
+        }
     };
 
     const handleCountryChange = (event) => {
