@@ -5,13 +5,11 @@ import FlightsService from '../../../services/FlightsService';
 import planeIcon from '../../../assets/images/plane.png';
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
-import formattedDate from '../../../utils/formattedDate';
 
 export default function AddFlight({ fetchFlights }) {
 
     const flightsService = new FlightsService();
 
-    const [flights, setFlights] = useState([]);
     const [flight, setFlight] = useState({
         seats: "0000000000000",
         price: "",
@@ -41,6 +39,9 @@ export default function AddFlight({ fetchFlights }) {
         nextDay.setDate(nextDay.getDate() + 1);
         return nextDay;
     });
+
+    const [formError, setFormError] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleDateTimeChange = (newDateTime, type) => {
         if (type === 'departure') {
@@ -95,11 +96,10 @@ export default function AddFlight({ fetchFlights }) {
                     airportDepartureId: firstAirportId
                 }));
             } else if (type === 'arrival' && airports.length > 1) {
-                // Set the arrival airport to the second airport in the list
                 setArrivalAirport(airports[1]);
                 setFlight(prevFlight => ({
                     ...prevFlight,
-                    airportArrivalId: airports[1].id // Use the ID of the second airport
+                    airportArrivalId: airports[1].id 
                 }));
             }
         }
@@ -156,10 +156,17 @@ export default function AddFlight({ fetchFlights }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (!flight.price || !flight.airportDepartureId || !flight.airportArrivalId || new Date(flight.arrivalDateTime) <= new Date(flight.departureDateTime)) {
+            setErrorMessage("*Please fill in all fields correctly and ensure that arrival date is after departure date.");
+            return;
+        }
+
         try {
             await flightsService.addFlight(flight);
             fetchFlights();
             alert(JSON.stringify(flight));
+            setErrorMessage("");
         } catch (error) {
             console.error('Error adding flight:', error);
         }
@@ -305,6 +312,7 @@ export default function AddFlight({ fetchFlights }) {
                             </div>
                         </div>
                     </div>
+                    {errorMessage && <p className="error-message my-2">{errorMessage}</p>}
                 </form>
 
             </div>

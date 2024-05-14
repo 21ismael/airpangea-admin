@@ -16,17 +16,17 @@ export default function AddAirport() {
     const [airport, setAirport] = useState(initialAirportState);
     const [country, setCountry] = useState("Spain");
 
-    const [error, setError] = useState(true);
+    const [formError, setFormError] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Check if there's an error in the city and airport name fields
-        if (airport.city.trim() === "" || airport.name.trim() === "" || airport.iata.trim() == "" || airport.iata.length !== 3) {
+        if (formError || airport.city.trim() === "" || airport.name.trim() === "" || airport.iata.trim() == "" || airport.iata.length !== 3) {
             setErrorMessage("*Error adding airport. Please fill in all fields.");
             return;
         }
+
 
         try {
             await flightsService.addAirport(airport);
@@ -46,9 +46,9 @@ export default function AddAirport() {
         if (name === 'name') {
             if (value.length === 0) {
                 setErrorMessage("*The airport name can't be empty.");
-                setError(true);
+                setFormError(true);
             } else {
-                setError(false);
+                setFormError(false);
                 setErrorMessage("");
             }
         }
@@ -56,9 +56,9 @@ export default function AddAirport() {
         if (name === 'city') {
             if (value.length === 0) {
                 setErrorMessage("*The city name can't be empty.");
-                setError(true);
+                setFormError(true);
             } else {
-                setError(false);
+                setFormError(false);
                 setErrorMessage("");
             }
         }
@@ -67,14 +67,14 @@ export default function AddAirport() {
             const upperCaseIata = value.toUpperCase();
             if (!/^[A-Z]+$/.test(upperCaseIata) || upperCaseIata.length !== 3) {
                 setErrorMessage("*The IATA code must be a 3-character alphabetical string.");
-                setError(true);
+                setFormError(true);
 
                 if(value.length == 0) {
-                    setError(true);
+                    setFormError(true);
                     setErrorMessage(""); 
                 }
             } else {
-                setError(false);
+                setFormError(false);
                 setErrorMessage("");
             }
 

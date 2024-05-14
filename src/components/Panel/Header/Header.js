@@ -17,15 +17,10 @@ export default function Header() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mx-4">
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">FLIGHT MANAGER</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">SUPPORT</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">🢆 LOGOUT</a>
-                            </li>
+                            <li className="nav-item"><NavLink to='/admin-panel/flights' className="nav-link">FLIGHTS MANAGER</NavLink></li>
+                            <li className="nav-item"><NavLink to='/admin-panel/users' className="nav-link">USERS MANAGER</NavLink></li>
+                            <li className="nav-item"><NavLink to='/admin-panel/support' className="nav-link">SUPPORT</NavLink></li>
+                            <li className="nav-item"><NavLink to='/admin-panel/logout' className="nav-link">🢆 LOGOUT</NavLink></li>
                         </ul>
                     </div>
                 </div>

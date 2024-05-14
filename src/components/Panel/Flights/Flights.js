@@ -47,7 +47,7 @@ export default function Flights() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>FC</th>
+                                    <th>F. Code</th>
                                     <th>Bs. Price</th>
                                     <th>Status</th>
                                     <th>ETD</th>
