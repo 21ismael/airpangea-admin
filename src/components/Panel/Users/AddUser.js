@@ -8,7 +8,7 @@ export default function AddUser({fetchUsers}) {
         name: "",
         lastName: "",
         email: "",
-        password:"1234"
+        password:"12345"
     };
 
     const [user, setUser] = useState(initialUserState);

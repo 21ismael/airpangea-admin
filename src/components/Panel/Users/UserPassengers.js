@@ -14,7 +14,6 @@ export default function UserPassengers({ users, fetchUsers }) {
         name: '',
         lastName: '',
         identityNumber: '',
-        seat: 'Z1'
     });
 
     useEffect(() => {
@@ -61,7 +60,6 @@ export default function UserPassengers({ users, fetchUsers }) {
                 name: '',
                 lastName: '',
                 identityNumber: '',
-                seat: 'Z1'
             });
             setShowAddPassengerForm(false);
         } catch (error) {
@@ -159,7 +157,6 @@ export default function UserPassengers({ users, fetchUsers }) {
                                             <th>Name</th>
                                             <th>Last Name</th>
                                             <th>Identity Number</th>
-                                            <th>Seat</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -169,7 +166,6 @@ export default function UserPassengers({ users, fetchUsers }) {
                                                 <td>{passenger.name}</td>
                                                 <td>{passenger.lastName}</td>
                                                 <td>{passenger.identityNumber}</td>
-                                                <td>{passenger.seat}</td>
                                             </tr>
                                         ))}
                                     </tbody>

@@ -5,6 +5,7 @@ import formattedDate from '../../../utils/formattedDate';
 import AddAirport from './AddAirport';
 import AddFlight from './AddFlight';
 import countryFlag from '../../../utils/countryFlag';
+import convertToAP from '../../../utils/convertToAP';
 
 export default function Flights() {
 
@@ -59,7 +60,7 @@ export default function Flights() {
                             <tbody>
                                 {flights.map((flight) => (
                                     <tr key={flight.id}>
-                                        <td>{flight.flightCode}</td>
+                                        <td>{convertToAP(flight.id)}</td>
                                         <td>{flight.price}€</td>
                                         <td>{flight.status}</td>
                                         <td>{formattedDate(flight.departureDateTime)}</td>
