@@ -11,6 +11,21 @@ export default class FlightsService {
         return response.json();
     }
 
+    async getFlightById(id) {
+        try {
+            const response = await fetch(`${this.SERVER}/flight/${id}`);
+
+            if (!response.ok) {
+                throw new Error(`Failed to get flight with id ${id}`);
+            }
+
+            return response.json();
+        } catch (error) {
+            console.error('Error getting flight by id:', error);
+            throw error;
+        }
+    }
+
     async GetAirportsByCountry(country) {
         const response = await fetch(`${this.SERVER}/airport/by-country-name/${country}`);
 
@@ -30,7 +45,7 @@ export default class FlightsService {
                 },
                 body: JSON.stringify(airport),
             });
-            
+
             if (!response.ok) {
                 throw new Error('Failed to add a airport');
             }
@@ -54,7 +69,7 @@ export default class FlightsService {
                 },
                 body: JSON.stringify(flight),
             });
-            
+
             if (!response.ok) {
                 throw new Error('Failed to add a flight');
             }

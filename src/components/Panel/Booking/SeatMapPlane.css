@@ -1,0 +1,29 @@
+.seatmap-container {
+    width: 237px;
+    height: 736px;
+    background-image: url(../../../assets/images/seatmap_bg_2.png);
+    padding: 150px 22px 70px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; 
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.seat, .hall {
+    width: 40px;
+    height: 42px;
+    border-radius: 10px 10px 1px 1px;
+}
+
+.available {
+    background-color: darkslategray;
+}
+
+.unavailable {
+    background-color: red;
+}
+
+.hall {
+    background-color: transparent; 
+}

@@ -11,7 +11,7 @@ export default function AddFlight({ fetchFlights }) {
     const flightsService = new FlightsService();
 
     const [flight, setFlight] = useState({
-        seats: "000000000000000000000000000000",
+        seats: "O OOO OOO OOO OOO OOO OOO OOO OOO OOO OO",
         price: "",
         status: "Scheduled",
         departureDateTime: new Date().toISOString(),
