@@ -84,4 +84,22 @@ export default class FlightsService {
         }
     }
 
+    async deleteAirport(airportId) {
+        try {
+            const response = await fetch(`${this.SERVER}/airport/${airportId}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete airport');
+            }
+
+            console.log("Airport deleted successfully");
+            return await response.json();
+        } catch (error) {
+            console.error('Error deleting airport:', error);
+            throw error;
+        }
+    }
+
 }

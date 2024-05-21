@@ -54,7 +54,6 @@ export default function AddFlight({ fetchFlights }) {
                 departureDateTime: newDepartureDateTime.toISOString()
             }));
     
-            // If arrival datetime is before departure datetime, adjust it to departure datetime + 1 day
             if (arrivalDateTime < newDepartureDateTime) {
                 const newMinArrivalDateTime = new Date(newDepartureDateTime);
                 newMinArrivalDateTime.setDate(newMinArrivalDateTime.getDate() + 1);

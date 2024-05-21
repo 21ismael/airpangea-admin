@@ -6,13 +6,20 @@ import AddAirport from './AddAirport';
 import AddFlight from './AddFlight';
 import countryFlag from '../../../utils/countryFlag';
 import convertToAP from '../../../utils/convertToAP';
+import DeleteAirport from './DeleteAiport';
 
 export default function Flights() {
 
     const flightsService = new FlightsService();
 
+    const [filterId, setFilterId] = useState('');
+
+    const handleFilterChange = (event) => {
+        setFilterId(event.target.value);
+    };
+
     const [flights, setFlights] = useState([]);
-    
+
     const fetchFlights = async () => {
         try {
             const flights = await flightsService.getAllFlights();
@@ -27,6 +34,10 @@ export default function Flights() {
         fetchFlights();
     }, []);
 
+    const filteredFlights = flights.filter(flight =>
+        convertToAP(flight.id.toString()).includes(filterId.toString())
+    );
+
     return <>
         <div className="container-fluid my-5">
             <div className="row">
@@ -37,14 +48,24 @@ export default function Flights() {
 
                     <AddAirport />
 
-                    <AddFlight fetchFlights={ fetchFlights } />
+                    <DeleteAirport />
+
+                    <AddFlight fetchFlights={fetchFlights} />
 
                 </div>
 
                 {/* -- TABLA DE VUELOS -- */}
 
                 <div className="col-md-7">
-                    <div className='table-container'>
+
+                    <div className='table-container filter-container'>
+                        <input
+                            type="text"
+                            placeholder="Filter by Flight ID"
+                            value={filterId}
+                            onChange={handleFilterChange}
+                            className="form-control input-filter"
+                        />
                         <table>
                             <thead>
                                 <tr>
@@ -58,7 +79,7 @@ export default function Flights() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {flights.map((flight) => (
+                                {filteredFlights.map((flight) => (
                                     <tr key={flight.id}>
                                         <td>{convertToAP(flight.id)}</td>
                                         <td>{flight.price}€</td>
