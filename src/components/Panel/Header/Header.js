@@ -22,7 +22,7 @@ export default function Header({ openDialog }) {
                             <li className="nav-item"><NavLink to='/admin-panel/users' className="nav-link">USERS MANAGER</NavLink></li>
                             <li className="nav-item"><NavLink to='/admin-panel/booking' className="nav-link">BOOKING MANAGER</NavLink></li>
                             <li className="nav-item"><button id="supportBtn" className="nav-link" onClick={openDialog}>SUPPORT</button></li>
-                            <li className="nav-item"><NavLink to='/admin-panel/logout' className="nav-link">🢆 LOGOUT</NavLink></li>
+                            <li className="nav-item"><NavLink to='/login' className="nav-link">🢆 LOGOUT</NavLink></li>
                         </ul>
                     </div>
                 </div>

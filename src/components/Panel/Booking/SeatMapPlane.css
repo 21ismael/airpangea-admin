@@ -8,6 +8,7 @@
     gap: 5px; 
     margin: auto;
     margin-bottom: 20px;
+    margin-TOP: 20px;
 }
 
 .seat, .hall {
@@ -26,4 +27,13 @@
 
 .hall {
     background-color: transparent; 
+}
+
+.flight-info span img {
+    width: 45px;
+    margin: 0px 10px;
+}
+
+.select-booking {
+    border-radius: 3px;
 }

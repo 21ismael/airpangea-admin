@@ -84,6 +84,44 @@ export default class FlightsService {
         }
     }
 
+    async updateFlight(flight) {
+        try {
+            const response = await fetch(`${this.SERVER}/flight/${flight.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(flight),
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to update flight');
+            }
+    
+            return { success: true, message: 'Flight updated successfully' };
+        } catch (error) {
+            console.error('Error updating flight:', error);
+            throw error;
+        }
+    }
+
+    async deleteFlight(id) {
+        try {
+            const response = await fetch(`${this.SERVER}/flight/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete flight');
+            }
+
+            return response.json();
+        } catch (error) {
+            console.error('Error deleting flight:', error);
+            throw error;
+        }
+    }
+
     async deleteAirport(airportId) {
         try {
             const response = await fetch(`${this.SERVER}/airport/${airportId}`, {

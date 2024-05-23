@@ -3,7 +3,8 @@ import countries from '../../../utils/countries';
 import countryFlag from '../../../utils/countryFlag';
 import FlightsService from '../../../services/FlightsService';
 
-export default function AddAirport() {
+export default function AddAirport({flight}) {
+
     const flightsService = new FlightsService();
 
     const initialAirportState = {
@@ -26,7 +27,6 @@ export default function AddAirport() {
             setErrorMessage("*Error adding airport. Please fill in all fields.");
             return;
         }
-
 
         try {
             await flightsService.addAirport(airport);
@@ -82,6 +82,7 @@ export default function AddAirport() {
                 ...prevAirportForm,
                 iata: upperCaseIata
             }));
+
         } else {
             setAirport(prevAirportForm => ({
                 ...prevAirportForm,

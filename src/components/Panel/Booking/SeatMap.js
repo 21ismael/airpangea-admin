@@ -23,6 +23,7 @@ export default function SeatMap() {
 
         try {
             const flight = await flightService.getFlightById(flightId);
+            alert(JSON.stringify(flight))
             setSeats(flight.seats);
             setErrorMessage("");
         } catch (error) {
@@ -38,10 +39,10 @@ export default function SeatMap() {
 
     return (
         <div className="airport-container mb-3 seatmap">
-            <h2>SeatMap</h2>
+            <h2>Flight Information</h2>
             <form onSubmit={handleSubmit}>
                 <div className="row">
-                    <div className="col-4">
+                    <div className="col-5">
                         <input
                             type="number"
                             min="0"
@@ -52,7 +53,7 @@ export default function SeatMap() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="col-8">
+                    <div className="col-7">
                         <button type="submit" className="btn-p">Search</button>
                     </div>
                     {errorMessage && <p className="error-message my-2">{errorMessage}</p>}

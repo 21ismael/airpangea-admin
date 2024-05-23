@@ -6,7 +6,7 @@ import planeIcon from '../../../assets/images/plane.png';
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 
-export default function AddFlight({ fetchFlights }) {
+export default function AddFlight({ fetchFlights, handleCloseDialog }) {
 
     const flightsService = new FlightsService();
 
@@ -48,12 +48,12 @@ export default function AddFlight({ fetchFlights }) {
             setDepartureDateTime(newDateTime);
             const newDepartureDateTime = new Date(newDateTime);
             newDepartureDateTime.setHours(newDepartureDateTime.getHours() + 2);
-    
+
             setFlight(prevFlight => ({
                 ...prevFlight,
                 departureDateTime: newDepartureDateTime.toISOString()
             }));
-    
+
             if (arrivalDateTime < newDepartureDateTime) {
                 const newMinArrivalDateTime = new Date(newDepartureDateTime);
                 newMinArrivalDateTime.setDate(newMinArrivalDateTime.getDate() + 1);
@@ -67,14 +67,14 @@ export default function AddFlight({ fetchFlights }) {
             setArrivalDateTime(newDateTime);
             const newArrivalDateTime = new Date(newDateTime);
             newArrivalDateTime.setHours(newArrivalDateTime.getHours() + 2);
-    
+
             setFlight(prevFlight => ({
                 ...prevFlight,
                 arrivalDateTime: newArrivalDateTime.toISOString()
             }));
         }
     };
-    
+
     useEffect(() => {
         const selectedCountry = countries.find(country => country.nameEN === 'Spain');
         if (selectedCountry) {
@@ -98,7 +98,7 @@ export default function AddFlight({ fetchFlights }) {
                 setArrivalAirport(airports[1]);
                 setFlight(prevFlight => ({
                     ...prevFlight,
-                    airportArrivalId: airports[1].id 
+                    airportArrivalId: airports[1].id
                 }));
             }
         }
@@ -166,6 +166,20 @@ export default function AddFlight({ fetchFlights }) {
             fetchFlights();
             alert(JSON.stringify(flight));
             setErrorMessage("");
+            setFlight({
+                seats: "O OOO OOO OOO OOO OOO OOO OOO OOO OOO OO",
+                price: "",
+                status: "Scheduled",
+                departureDateTime: new Date().toISOString(),
+                arrivalDateTime: (() => {
+                    const nextDay = new Date();
+                    nextDay.setDate(nextDay.getDate() + 1);
+                    return nextDay.toISOString();
+                })(),
+                aircraftId: 1,
+                airportDepartureId: null,
+                airportArrivalId: null
+            });
         } catch (error) {
             console.error('Error adding flight:', error);
         }

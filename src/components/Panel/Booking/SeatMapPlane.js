@@ -18,9 +18,19 @@ export default function SeatMapPlane({ seats }) {
         });
     };
 
-    return (
+    return <>
+        <div className='row py-0'>
+            <div className='seats d-flex  gap-2'>
+                <div className='d-flex gap-2 align-items-center'>
+                    <div className='seat available'></div><label>Available</label>
+                </div>
+                <div className='d-flex gap-2 align-items-center'>
+                    <div className='seat unavailable'></div><label>Not Available</label>
+                </div>
+            </div>
+        </div>
         <div className="seatmap-container">
             {renderSeatMap(seats)}
         </div>
-    );
+    </>
 }

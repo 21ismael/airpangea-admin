@@ -7,13 +7,13 @@ export default function booking() {
     <div className="container-fluid my-5">
       <div className="row">
 
-        {/* CREAR USUARIO */}
+        {/* SEATMAP */}
 
         <div className="col-md-5 mb-3">
           <SeatMap />
         </div>
 
-        {/* -- TABLA DE USUARIOS -- */}
+        {/* -- AÑADIR -- */}
 
         <div className="col-md-7">
           <AddBooking />

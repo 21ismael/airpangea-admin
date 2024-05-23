@@ -89,16 +89,31 @@ h2 {
 
 /* ===== TABLA DE VUELOS ===== */
 
-.table-container {
-    border: 3px solid black;
-    border-radius: 10px;
-    overflow: auto;
-    color: black;
-    max-height: 70vh;
+.input-filter {
+    width: 68px;
+    padding: 2px 5px ;
+    margin: 10px 10px 10px 8px;
 }
 
-.filter-container {
-    background-color: transparent;
+.input-container {
+    background-color: black;
+    width: 100%;
+    padding-top: 2px;
+    padding-bottom: 1px;
+    border-radius: 10px 10px 0 0;
+    color: white;
+}
+
+.input-container label {
+    margin-left: 13px;
+}
+
+.table-container {
+    border: 3px solid black;
+    border-radius: 0 0 10px 10px;
+    overflow: auto;
+    color: black;
+    max-height: 80vh;
 }
 
 table {
@@ -125,12 +140,6 @@ td {
 th {
     background-color: black;
     color: white;
-}
-
-.table-container input {
-    width: 155px;
-    padding: 3px 12px ;
-    margin: 10px 10px 10px 8px;
 }
 
 /* ===== SCROLLBAR ===== */

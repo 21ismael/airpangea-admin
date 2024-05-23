@@ -52,8 +52,8 @@ export default function UserPassengers({ users, fetchUsers }) {
     const handleAddPassenger = async (event) => {
         event.preventDefault();
         try {
-            await userService.addPassenger(newPassenger);
-            setPassengers([...passengers, newPassenger]);
+            const addedPassenger = await userService.addPassenger(newPassenger);
+            setPassengers([...passengers, addedPassenger]);
             fetchUsers();
             setNewPassenger({
                 userId: userId,
@@ -153,16 +153,16 @@ export default function UserPassengers({ users, fetchUsers }) {
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Last Name</th>
                                             <th>Identity Number</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {passengers.map((passenger, index) => (
+                                        {passengers.map((passenger) => (
                                             <tr key={passenger.id}>
-                                                <td>{index + 1}</td>
+                                                <td>{passenger.id}</td>
                                                 <td>{passenger.name}</td>
                                                 <td>{passenger.lastName}</td>
                                                 <td>{passenger.identityNumber}</td>
