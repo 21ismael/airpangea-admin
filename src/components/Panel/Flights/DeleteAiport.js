@@ -59,7 +59,7 @@ const DeleteAirport = () => {
 
     return (
         <div className="delete-airport-container airport-container mt-3">
-            <h2>DeleteAirports</h2>
+            <h2>Delete Airports</h2>
             <div className="row">
                 <div className="col-6 col-md-12 col-lg-6">
                     <div className='country mb-2'>
