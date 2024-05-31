@@ -1,1 +1,3 @@
 - tabla de vuelos el thead fixed
+-login poner error de credenciales, trim para evitar espacios.
+- filter por status ademas de ap001

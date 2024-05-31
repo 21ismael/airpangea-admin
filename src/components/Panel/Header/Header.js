@@ -17,7 +17,7 @@ export default function Header({ openDialog }) {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mx-4">
-                            <li className="nav-item"><NavLink to='https://www.aircanada.com/es/es/aco/home.html' target="_blank" className="nav-link">WEBSITE</NavLink></li>
+                            <li className="nav-item"><NavLink to='http://localhost:3000/' target="_blank" className="nav-link">WEBSITE</NavLink></li>
                             <li className="nav-item"><NavLink to='/admin-panel/flights' className="nav-link">FLIGHTS MANAGER</NavLink></li>
                             <li className="nav-item"><NavLink to='/admin-panel/users' className="nav-link">USERS MANAGER</NavLink></li>
                             <li className="nav-item"><NavLink to='/admin-panel/booking' className="nav-link">BOOKING MANAGER</NavLink></li>
