@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header/Header';
 import './Panel.css';
-import loader from '../../assets/svg/loader.svg'
+import loader from '../../assets/svg/loader.svg';
+import withAuth from '../Login/withAuth';
 
-export default function Root() {
+function Root() {
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -55,3 +56,5 @@ export default function Root() {
         </>
     );
 }
+
+export default withAuth(Root);

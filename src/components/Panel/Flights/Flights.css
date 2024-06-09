@@ -91,17 +91,21 @@ h2 {
 
 .input-filter {
     width: 68px;
-    padding: 2px 5px ;
+    padding: 2px 5px;
     margin: 10px 10px 10px 8px;
 }
 
 .input-container {
     background-color: black;
-    width: 100%;
     padding-top: 2px;
     padding-bottom: 1px;
     border-radius: 10px 10px 0 0;
     color: white;
+}
+
+.input-container select {
+    width: 120px;
+    padding: 2px 5px;
 }
 
 .input-container label {

@@ -14,9 +14,14 @@ export default function Flights() {
     const flightsService = new FlightsService();
 
     const [filterId, setFilterId] = useState('');
+    const [filterStatus, setFilterStatus] = useState('');
 
-    const handleFilterChange = (event) => {
+    const handleFilterIdChange = (event) => {
         setFilterId(event.target.value);
+    };
+
+    const handleFilterStatusChange = (event) => {
+        setFilterStatus(event.target.value);
     };
 
     const [flights, setFlights] = useState([]);
@@ -24,7 +29,6 @@ export default function Flights() {
     const [flightToDelete, setFlightToDelete] = useState(null);
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
     const [flightToEdit, setFlightToEdit] = useState(false);
-    
 
     const fetchFlights = async () => {
         try {
@@ -41,7 +45,8 @@ export default function Flights() {
     }, []);
 
     const filteredFlights = flights.filter(flight =>
-        convertToAP(flight.id.toString()).includes(filterId.toString())
+        convertToAP(flight.id.toString()).includes(filterId.toString()) &&
+        (filterStatus === '' || flight.status === filterStatus)
     );
 
     const handleOpenDialog = (flight, action) => {
@@ -78,13 +83,11 @@ export default function Flights() {
                 {/* CREAR AEROPUETO Y VUELO */}
 
                 <div className="col-md-5 mb-3">
+                    <AddFlight fetchFlights={fetchFlights} />
 
                     <AddAirport />
 
                     <DeleteAirport />
-
-                    <AddFlight fetchFlights={fetchFlights} />
-
                 </div>
 
                 {/* -- TABLA DE VUELOS -- */}
@@ -96,9 +99,17 @@ export default function Flights() {
                             type="text"
                             placeholder="AP000"
                             value={filterId}
-                            onChange={handleFilterChange}
+                            onChange={handleFilterIdChange}
                             className="form-control input-filter"
                         />
+                        <label className='mx-3'>Filter by Status</label>
+                        <select value={filterStatus} onChange={handleFilterStatusChange} className="form-control form-select">
+                            <option value=''>All</option>
+                            <option value='Scheduled'>Scheduled</option>
+                            <option value='Delayed'>Delayed</option>
+                            <option value='Cancelled'>Cancelled</option>
+                            <option value='Completed'>Completed</option>
+                        </select>
                     </div>
 
                     <div className='table-container'>
@@ -182,4 +193,3 @@ export default function Flights() {
         </div>
     );
 }
-

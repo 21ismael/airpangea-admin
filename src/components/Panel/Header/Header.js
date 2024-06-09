@@ -1,9 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/svg/logo-white.svg';
 import './Header.css';
 
 export default function Header({ openDialog }) {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        sessionStorage.removeItem('authenticated');
+        navigate('/login');
+    };
 
     return (
         <header>
@@ -22,7 +28,7 @@ export default function Header({ openDialog }) {
                             <li className="nav-item"><NavLink to='/admin-panel/users' className="nav-link">USERS MANAGER</NavLink></li>
                             <li className="nav-item"><NavLink to='/admin-panel/booking' className="nav-link">BOOKING MANAGER</NavLink></li>
                             <li className="nav-item"><button id="supportBtn" className="nav-link" onClick={openDialog}>SUPPORT</button></li>
-                            <li className="nav-item"><NavLink to='/login' className="nav-link">🢆 LOGOUT</NavLink></li>
+                            <li className="nav-item"><button className="nav-link" onClick={handleLogout}>🢆 LOGOUT</button></li>
                         </ul>
                     </div>
                 </div>

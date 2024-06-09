@@ -7,3 +7,11 @@
     border: none; 
     color: white
 }
+
+.corners {
+    border-radius: 10px !important;
+}
+
+.input-email {
+    width: auto;
+}

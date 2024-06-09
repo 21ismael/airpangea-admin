@@ -1,5 +1,5 @@
 
-import { Route, Routes, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import Panel from "./components/Panel/Panel";
 import Flights from './components/Panel/Flights/Flights'; 
 import Users from './components/Panel/Users/Users';
@@ -8,7 +8,7 @@ import Login from "./components/Login/Login";
 
 export const router = createBrowserRouter(createRoutesFromElements(
   <Route>
-    <Route path="/" element={<Panel />} />
+    <Route path="/" element={<Login />} />
     <Route path="/login" element={<Login />}></Route>
     <Route path="/admin-panel" element={<Panel />}>
       <Route path="/admin-panel/flights" element={<Flights />} />
