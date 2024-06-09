@@ -3,22 +3,18 @@ export default class FlightsService {
 
     async getAllFlights() {
         const response = await fetch(`${this.SERVER}/flight`);
-
         if (!response.ok) {
             throw new Error('Failed to get all the flights');
         }
-
         return response.json();
     }
 
     async getFlightById(id) {
         try {
             const response = await fetch(`${this.SERVER}/flight/${id}`);
-
             if (!response.ok) {
                 throw new Error(`Failed to get flight with id ${id}`);
             }
-
             return response.json();
         } catch (error) {
             console.error('Error getting flight by id:', error);

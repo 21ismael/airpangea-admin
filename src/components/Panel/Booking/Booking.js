@@ -5,22 +5,22 @@ import BookingTable from './BookingTable';
 import BookingService from '../../../services/BookingService';
 
 export default function Booking() {
-  const bookingService = new BookingService(); 
+  const bookingService = new BookingService();
 
   const [bookings, setBookings] = useState([]);
 
-  useEffect(() => {
-    const fetchBookings = async () => {
-      try {
-        const bookingsData = await bookingService.getAllBookings();
-        setBookings(bookingsData);
-      } catch (error) {
-        console.error('Error fetching bookings:', error);
-      }
-    };
+  const fetchBookings = async () => {
+    try {
+      const bookingsData = await bookingService.getAllBookings();
+      setBookings(bookingsData);
+    } catch (error) {
+      console.error('Error fetching bookings:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchBookings();
-  }, []); 
+  }, []);
 
   return (
     <div className="container-fluid my-5">
@@ -31,7 +31,7 @@ export default function Booking() {
         </div>
 
         <div className="col-md-7">
-          <AddBooking />
+          <AddBooking fetchBookings={fetchBookings} />
           <BookingTable bookings={bookings} />
         </div>
       </div>
