@@ -98,8 +98,8 @@ export default function AddAirport({flight}) {
     };
 
     return (
-        <div className="airport-container">
-            <h2>Airport Information</h2>
+        <div className="airport-container mt-3">
+            <h2>Add Airport</h2>
             <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-6 col-md-12 col-lg-6">

@@ -5,13 +5,16 @@ import logo from '../../assets/svg/logo-black.svg';
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleLogin = (event) => {
         event.preventDefault();
         if (username === 'admin' && password === 'admin') {
+            console.log("aaa");
+            sessionStorage.setItem('authenticated', 'true');
             window.location.href = '/admin-panel/flights';
         } else {
-            console.log('Credenciales incorrectas');
+            setError('Credenciales incorrectas');
         }
     };
 
@@ -33,6 +36,7 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
+                {error && <p className='error-message'>{error}</p>}
                 <button type='submit' className='btn-p mx-4'>LOGIN</button>
             </form>
         </div>

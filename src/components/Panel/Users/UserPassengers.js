@@ -91,14 +91,14 @@ export default function UserPassengers({ users, fetchUsers }) {
             </form>
 
             {user && (
-                <div className='row py-0 m-0'>
-                    <div className='user-details p-0 table-container'>
+                <div className='row py-0 m-0 pb-2'>
+                    <div className='user-details p-0 table-container corners'>
                         <h2 className='m-0'>User Details</h2>
                         <p className='m-0 px-3 mt-2'><strong>Name:</strong> {user.name} {user.lastName}</p>
                         <p className='m-0 px-3 mb-2'><strong>Email:</strong> {user.email}</p>
                     </div>
                     <div className='passengers-container my-2 p-0'>
-                        <div className='table-container'>
+                        <div className='table-container corners'>
                             <div className='d-flex justify-content-between align-items-center bg-black'>
                                 <h2 className='m-0'>Passengers</h2>
                                 <button className='mx-3 btn' onClick={() => setShowAddPassengerForm(!showAddPassengerForm)}>

@@ -156,8 +156,13 @@ export default function AddFlight({ fetchFlights, handleCloseDialog }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!flight.price || !flight.airportDepartureId || !flight.airportArrivalId || new Date(flight.arrivalDateTime) <= new Date(flight.departureDateTime)) {
-            setErrorMessage("*Please fill in all fields correctly and ensure that arrival date is after departure date.");
+        if (!flight.price || !flight.airportDepartureId || !flight.airportArrivalId) {
+            setErrorMessage("*Please fill in all fields correctly");
+            return;
+        }
+
+        if (new Date(flight.arrivalDateTime) <= new Date(flight.departureDateTime)) {
+            setErrorMessage("*Please ensure that arrival date is after departure date");
             return;
         }
 
@@ -186,8 +191,8 @@ export default function AddFlight({ fetchFlights, handleCloseDialog }) {
     };
 
     return <>
-        <div className="flight-container mt-3">
-            <h2 className="m-0">Flight Information</h2>
+        <div className="flight-container">
+            <h2 className="m-0">Add Flight</h2>
             <div className="flight-content d-flex flex-column gap-2">
 
                 <form onSubmit={handleSubmit}>

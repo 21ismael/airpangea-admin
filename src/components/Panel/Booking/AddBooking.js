@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BookingService from '../../../services/BookingService';
 import FlightsService from '../../../services/FlightsService';
 
-export default function AddBooking() {
+export default function AddBooking({fetchBookings}) {
     const bookingService = new BookingService();
     const flightService = new FlightsService();
 
@@ -37,6 +37,8 @@ export default function AddBooking() {
             setBooking(initialBookingState);
             setFlight(updatedFlight); 
             setErrorMessage("");
+
+            fetchBookings(); 
         } catch (error) {
             console.error('Error adding booking:', error);
             setErrorMessage("There was an error adding the booking.");
