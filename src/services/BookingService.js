@@ -1,5 +1,5 @@
 export default class UsersService {
-    SERVER = "http://back.airpangea.com/api";
+    SERVER = "http://localhost:5081/api";
 
     async getAllBookings() {
         const response = await fetch(`${this.SERVER}/booking`);

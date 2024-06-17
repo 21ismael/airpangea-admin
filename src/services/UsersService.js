@@ -1,11 +1,21 @@
 export default class UsersService {
-    SERVER = "http://back.airpangea.com/api";
+    SERVER = "http://localhost:5081/api";
 
     async getAllUsers() {
         const response = await fetch(`${this.SERVER}/user`);
 
         if (!response.ok) {
             throw new Error('Failed to get all the users');
+        }
+
+        return response.json();
+    }
+
+    async getPassengerByID(id) {
+        const response = await fetch(`${this.SERVER}/passenger/${id}`);
+
+        if (!response.ok) {
+            throw new Error('Failed to get user with id ' + id);
         }
 
         return response.json();
